@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import PasswordStrengthMeter from "./PasswordStrengthMeter";
+class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            password: "",
+        };
+    }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    render() {
+        const { password } = this.state;
+        return (
+            <div className="App">
+                <div className="meter">
+                    <input
+                        autoComplete="off"
+                        type="password"
+                        onChange={e =>
+                            this.setState({ password: e.target.value })
+                        }
+                    />
+                    <PasswordStrengthMeter password={password} />
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
